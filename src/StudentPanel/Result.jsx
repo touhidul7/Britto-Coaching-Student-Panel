@@ -187,7 +187,7 @@ const Result = () => {
         {/* Result Header */}
         <div className="bg-gray-100 p-5 rounded-lg mb-8 text-center">
           <h1 className="text-xl font-bold">
-            Medha Bikash Shishoo Nikatan & Quran Academy Exam Result
+            Medha Bikash Shishu Niketan & Quran Academy Exam Result
           </h1>
         </div>
 

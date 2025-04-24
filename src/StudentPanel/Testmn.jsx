@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useOutletContext } from "react-router-dom";
 import html2canvas from "html2canvas";
@@ -187,10 +188,10 @@ const Testmn = () => {
             className="w-[70px] mx-auto mb-3"
           /> */}
               <h1 className="text-[#2DB75B] text-[30px] leading-tight font-semibold mb-">
-                মেধা বিকাশ শিশু নিকেতন এন্ড কুরআন একাডেমি
+                মেধা বিকাশ শিশু নিকেতন এন্ড কোরআন একাডেমি
               </h1>
               <h1 className="text-[#1A56DB] text-[25px] font-semibold my-1">
-                Medha Bikash Shishoo Nikatan And Quran Academy
+                Medha Bikash Shisho Niketan And Quran Academy
               </h1>
               <div className="text-center  font-[450] text-md">
                 <p>

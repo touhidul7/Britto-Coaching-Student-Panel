@@ -189,7 +189,7 @@ const PayFee = () => {
     e.preventDefault();
     // Prepare data to send via Web3Forms
     const web3FormData = new FormData();
-    web3FormData.append("access_key", "4727cb6c-ba2c-4318-8eb4-82caaeac0f6b-");
+    web3FormData.append("access_key", "4727cb6c-ba2c-4318-8eb4-82caaeac0f6b");
     web3FormData.append("studentName", studentDetails.studentNameEn || "N/A");
     web3FormData.append("subject", "A Student has submited Fees");
     web3FormData.append("studentId", studentID || "N/A");
@@ -248,7 +248,6 @@ const PayFee = () => {
 
       if (response.data.success) {
         toast.success("Fees Payment successfully!");
-        console.log(response);
         generateInvoice(
           invoiceNumber,
           studentID,
@@ -258,7 +257,6 @@ const PayFee = () => {
         );
       } else {
         toast.error("Failed to submit the form.");
-        console.log(response);
       }
     } catch (error) {
       toast.error("An error occurred during local submission.");
