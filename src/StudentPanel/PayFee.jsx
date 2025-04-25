@@ -13,7 +13,6 @@ const PayFee = () => {
   const [submitData, setSubmitData] = useState(false);
   const backendApiUrl = import.meta.env.VITE_API_BASE_URL;
   console.log(date);
-  
 
   const [result, setResult] = useState("");
   // const [classname, setClassname] = useState("");
@@ -342,25 +341,25 @@ const PayFee = () => {
                     options={PaymentOptions}
                     onChange={handleInputChange}
                   />
-                    {formData.pType !== "cash" && (
+                  {formData.pType !== "cash" && (
                     <>
-                    <InputField
-                      label="Payment Phone Number"
-                      name="pRef"
-                      onChange={handleInputChange}
-                    />
-                    
-                    <InputField
-                      label="Transaction ID"
-                      name="pDetails"
-                      onChange={handleInputChange}
-                    />
-                    </>)}
-                    <InputField
-                      label="Fee Amount"
-                      name="amount"
-                      onChange={handleInputChange}
-                    />
+                      <InputField
+                        label="Payment Phone Number"
+                        name="pRef"
+                        onChange={handleInputChange}
+                      />
+                      <InputField
+                        label="Transaction ID"
+                        name="pDetails"
+                        onChange={handleInputChange}
+                      />
+                    </>
+                  )}
+                  <InputField
+                    label="Fee Amount"
+                    name="amount"
+                    onChange={handleInputChange}
+                  />
                 </FormSection>
                 {submitData ? (
                   "Thank You For Your Payment"

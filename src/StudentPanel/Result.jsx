@@ -14,7 +14,7 @@ const Result = () => {
   const [formData, setFormData] = useState();
 
   const { data } = useOutletContext();
-  console.log(data);
+  console.log(results);
 
   const backendApiUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -34,11 +34,11 @@ const Result = () => {
       case "A":
         return 4.0;
       case "B":
-        return 3.0;
+        return 3.5;
       case "C":
-        return 2.0;
+        return 3.0;
       case "D":
-        return 1.0;
+        return 2.0;
       case "F":
         return 0.0;
       default:
@@ -53,7 +53,6 @@ const Result = () => {
       const grade = calculateGrade(Number(marks));
       return sum + getGradePoint(grade);
     }, 0);
-
     return (totalPoints / Object.keys(subjectsMarks).length).toFixed(2); // Round GPA to 2 decimal places
   };
 
@@ -87,6 +86,7 @@ const Result = () => {
       .get(`${backendApiUrl}/getExamResult/${data.studentId}`)
       .then(function (response) {
         const results = response.data.data;
+        console.log(response.data.data);
 
         // Filter results based on the selected examination term and class
         const filteredResults = results.filter(
@@ -97,6 +97,7 @@ const Result = () => {
 
         if (filteredResults.length > 0) {
           setResults(filteredResults);
+          console.log(filteredResults);
           toast.success("Successfully Loaded Data!");
         } else {
           setResults([]);
@@ -112,6 +113,19 @@ const Result = () => {
   const gpa =
     results?.length > 0 ? calculateGPA(results[0].subjects_marks) : null;
 
+  let gpasymbol =
+    gpa >= 5.0
+      ? "A+"
+      : gpa >= 4.0
+      ? "A"
+      : gpa >= 3.5
+      ? "B"
+      : gpa >= 3.0
+      ? "C"
+      : gpa >= 2.0
+      ? "D"
+      : "F";
+
   /* Pdf Download */
 
   // Function to handle the PDF download
@@ -119,7 +133,7 @@ const Result = () => {
     const resultSection = document.querySelector(".Result-Section");
 
     // Apply desktop styles to ensure consistent layout
-    resultSection.style.width = "800px"; // Fixed width for desktop view
+    resultSection.style.width = "900px"; // Fixed width for desktop view
     resultSection.style.margin = "auto"; // Center the content
 
     html2canvas(resultSection, { scale: 2 }).then((canvas) => {
@@ -187,7 +201,7 @@ const Result = () => {
         {/* Result Header */}
         <div className="bg-gray-100 p-5 rounded-lg mb-8 text-center">
           <h1 className="text-xl font-bold">
-            Medha Bikash Shishu Niketan & Quran Academy Exam Result
+            Medha Bikash Shishoo Nikatan & Quran Academy Exam Result
           </h1>
         </div>
 
@@ -246,7 +260,7 @@ const Result = () => {
                 <span className="w-1/2 font-medium">Result (GPA)</span>
                 <span className="w-1/2 text-left">
                   <b>: </b>
-                  {gpa ? `${gpa} (A+)` : "N/A"}
+                  {gpa ? `${gpa} (${gpasymbol})` : "N/A"}
                 </span>
               </div>
             </div>
@@ -255,6 +269,9 @@ const Result = () => {
 
         {/* GPA Information */}
         <div className="alert alert-info text-center bg-blue-100 mb-6 text-blue-800 p-4 rounded-md">
+          <h2 className="text-center text-2xl font-semibold ">
+            {results?.length > 0 ? results[0]?.examination : "Exam Name"}
+          </h2>
           <h3 className="text-center text-xl font-semibold ">Mark Sheet</h3>
         </div>
 
@@ -298,6 +315,66 @@ const Result = () => {
             </tbody>
           </table>
         </div>
+        {/* Radio Input */}
+        <div className="">
+          <h3 className="mt-4 font-semibold text-gray-900 dark:text-white">
+            ফলাফল
+          </h3>
+          <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+              <div className="flex items-center ps-3">
+                <input
+                  id="horizontal-list-radio-license"
+                  type="radio"
+                  value=""
+                  name="list-radio"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="horizontal-list-radio-license"
+                  className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Good{" "}
+                </label>
+              </div>
+            </li>
+            <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+              <div className="flex items-center ps-3">
+                <input
+                  id="horizontal-list-radio-id"
+                  type="radio"
+                  value=""
+                  name="list-radio"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="horizontal-list-radio-id"
+                  className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Better
+                </label>
+              </div>
+            </li>
+            <li className="w-full  border-gray-200 sm:border-b-0  dark:border-gray-600">
+              <div className="flex items-center ps-3">
+                <input
+                  id="horizontal-list-radio-military"
+                  type="radio"
+                  value=""
+                  name="list-radio"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="horizontal-list-radio-military"
+                  className="w-full  ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Best
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+        {/* Radio End */}
       </div>
 
       {/* Search Again Button */}

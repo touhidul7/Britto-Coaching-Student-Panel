@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useOutletContext } from "react-router-dom";
 import html2canvas from "html2canvas";
@@ -86,6 +85,7 @@ const Testmn = () => {
       .get(`${backendApiUrl}/getExamResult/${data.studentId}`)
       .then(function (response) {
         const results = response.data.data;
+        console.log(response.data.data);
 
         // Filter results based on the selected examination term and class
         const filteredResults = results.filter(
@@ -96,10 +96,11 @@ const Testmn = () => {
 
         if (filteredResults.length > 0) {
           setResults(filteredResults);
+          console.log(filteredResults);
           toast.success("Successfully Loaded Data!");
         } else {
           setResults([]);
-          toast.error("You Are Not Eligible For Testimonial");
+          toast.error("No results found for the selected term and class.");
         }
       })
       .catch(function (error) {
@@ -188,10 +189,10 @@ const Testmn = () => {
             className="w-[70px] mx-auto mb-3"
           /> */}
               <h1 className="text-[#2DB75B] text-[30px] leading-tight font-semibold mb-">
-                মেধা বিকাশ শিশু নিকেতন এন্ড কোরআন একাডেমি
+                মেধা বিকাশ শিশু নিকেতন এন্ড কুরআন একাডেমি
               </h1>
               <h1 className="text-[#1A56DB] text-[25px] font-semibold my-1">
-                Medha Bikash Shisho Niketan And Quran Academy
+                Medha Bikash Shishoo Nikatan And Quran Academy
               </h1>
               <div className="text-center  font-[450] text-md">
                 <p>
